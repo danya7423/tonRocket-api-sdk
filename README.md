@@ -102,7 +102,7 @@ const cheques = await api.getCheques()
 ### [getCheque](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_getCheque)
 | Параметр | Информация |
 |---------|-------------|
-| id | ID чека |
+| id* | ID чека |
 
 Пример:
 ```javascript
@@ -114,7 +114,7 @@ const cheques = await api.getCheque({
 ### [editCheque](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_editCheque)
 | Параметр | Информация |
 |---------|-------------|
-| id | ID чека |
+| id* | ID чека |
 | Всё остальное как в документации |
 
 Пример:
@@ -134,7 +134,7 @@ const cheque = await api.editCheque({
 ### [deleteCheque](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_deleteCheque)
 | Параметр | Информация |
 |---------|-------------|
-| id | ID чека |
+| id* | ID чека |
 
 Пример:
 ```javascript
@@ -171,7 +171,7 @@ const invoices= await api.getInvoices()
 ### [getInvoice](https://pay.ton-rocket.com/api/#/tg-invoices/InvoicesController_getInvoice)
 | Параметр | Информация |
 |---------|-------------|
-| id | ID счёта |
+| id* | ID счёта |
 
 Пример:
 ```javascript
@@ -183,7 +183,7 @@ const invoice = await api.getInvoice({
 ### [deleteInvoice](https://pay.ton-rocket.com/api/#/tg-invoices/InvoicesController_deleteInvoice)
 | Параметр | Информация |
 |---------|-------------|
-| id | ID счёта |
+| id* | ID счёта |
 
 Пример:
 ```javascript
@@ -205,8 +205,8 @@ const coins = await api.getCoins()
 ### [getCurrencies](https://pay.ton-rocket.com/api/#/currencies/CurrenciesController_getRates)
 | Параметр | Информация |
 |---------|-------------|
-| coinFrom | ID токена |
-| coinTo | ID токена |
+| coinFrom* | ID токена |
+| coinTo* | ID токена |
 
 Пример:
 ```javascript
