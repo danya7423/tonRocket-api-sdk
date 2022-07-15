@@ -3,7 +3,7 @@ const fetch = require('node-fetch')
 class RocketApi {
     constructor(access_token) {
         if (!access_token) {
-            throw NotImplementedError("Access token is not specified")
+            throw new Error('')
         }
 
         this.access_token = access_token
