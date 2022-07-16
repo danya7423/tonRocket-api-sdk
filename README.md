@@ -11,16 +11,46 @@ npm install tonrocket-api-sdk --save
 Как получить токен написано [тут](https://pay.ton-rocket.com/api/).
 
 ```javascript
-const RocketApi = require('tonrocket-api-sdk')
+const { RocketApi, Assets } = require('tonrocket-api-sdk')
 
 const api = new RocketApi('токен')
 ```
 
-## Методы
+Вы так же можете использовать [testnet](https://t.me/ton_rocket_test_bot)
+```javascript
+const api = new RocketApi('токен', {
+    testnet: true
+})
+```
+## ⬇️ Навигация
+
+#### 🚀 [Методы](#методы)
+##### [- getAppInfo](#getappinfo)
+##### [- transfer](#transfer)
+##### [- withdrawal](#withdrawal)
+
+##### [- createCheque](#createcheque)
+##### [- getCheques](#getcheques)
+##### [- getCheque](#getcheque)
+##### [- editCheque](#editcheque)
+##### [- deleteCheque](#deletecheque)
+
+##### [- createInvoice](#createinvoice)
+##### [- getInvoices](#getinvoices)
+##### [- getInvoice](#getinvoice)
+##### [- deleteInvoice](#deleteinvoice)
+
+##### [- getCoins](#getcoins)
+##### [- getCurrencies](#getcurrencies)
+
+#### 🌴 [Константы](#константы)
+##### [- Assets](#assets)
+## 🚀 Методы
 
 Параметры отмеченные знаком * являются обзательными
 
-### [getAppInfo](https://pay.ton-rocket.com/api/#/app/AppsController_getAppInfo)
+### getAppInfo 
+[Документация](https://pay.ton-rocket.com/api/#/app/AppsController_getAppInfo)
 | Параметр | Информация |
 |---------|-------------|
 | Не принимает параметров |
@@ -30,7 +60,8 @@ const api = new RocketApi('токен')
 const appInfo = await api.getAppInfo()
 ```
 
-### [transfer](https://pay.ton-rocket.com/api/#/app/AppsController_transfer)
+### transfer 
+[Документация](https://pay.ton-rocket.com/api/#/app/AppsController_transfer)
 | Параметр | Информация |
 |---------|-------------|
 | tgUserId* | ID получателя перевода |
@@ -50,7 +81,8 @@ const transfer = await api.transfer({
 })
 ```
 
-### [withdrawal](https://pay.ton-rocket.com/api/#/app/AppsController_withdrawal)
+### withdrawal
+[Документация](https://pay.ton-rocket.com/api/#/app/AppsController_withdrawal)
 | Параметр | Информация |
 |---------|-------------|
 | address* | TON кошелек, на который нужно отправить монеты |
@@ -70,7 +102,8 @@ const withdrawal = await api.withdrawal({
 })
 ```
 
-### [createCheque](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_createCheque)
+### createCheque
+[Документация](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_createCheque)
 Все параметры как в документации
 
 Пример:
@@ -89,7 +122,8 @@ const cheque = await api.createCheque({
 })
 ```
 
-### [getCheques](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_getCheques)
+### getCheques
+[Документация](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_getCheques)
 | Параметр | Информация |
 |---------|-------------|
 | Не принимает параметров |
@@ -99,7 +133,8 @@ const cheque = await api.createCheque({
 const cheques = await api.getCheques()
 ```
 
-### [getCheque](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_getCheque)
+### getCheque
+[Документация](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_getCheque)
 | Параметр | Информация |
 |---------|-------------|
 | id* | ID чека |
@@ -111,7 +146,8 @@ const cheques = await api.getCheque({
 })
 ```
 
-### [editCheque](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_editCheque)
+### editCheque
+[Документация](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_editCheque)
 | Параметр | Информация |
 |---------|-------------|
 | id* | ID чека |
@@ -131,7 +167,8 @@ const cheque = await api.editCheque({
 })
 ```
 
-### [deleteCheque](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_deleteCheque)
+### deleteCheque
+[Документация](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_deleteCheque)
 | Параметр | Информация |
 |---------|-------------|
 | id* | ID чека |
@@ -143,7 +180,8 @@ const cheque = await api.deleteCheque({
 })
 ```
 
-### [createInvoice](https://pay.ton-rocket.com/api/#/tg-invoices/InvoicesController_createInvoice)
+### createInvoice
+[Документация](https://pay.ton-rocket.com/api/#/tg-invoices/InvoicesController_createInvoice)
 Все параметры как в документации
 
 Пример:
@@ -158,7 +196,8 @@ const invoice = await api.createInvoice({
 })
 ```
 
-### [getInvoices](https://pay.ton-rocket.com/api/#/tg-invoices/InvoicesController_getInvoices)
+### getInvoices
+[Документация](https://pay.ton-rocket.com/api/#/tg-invoices/InvoicesController_getInvoices)
 | Параметр | Информация |
 |---------|-------------|
 | Не принимает параметров |
@@ -168,7 +207,8 @@ const invoice = await api.createInvoice({
 const invoices= await api.getInvoices()
 ```
 
-### [getInvoice](https://pay.ton-rocket.com/api/#/tg-invoices/InvoicesController_getInvoice)
+### getInvoice
+[Документация](https://pay.ton-rocket.com/api/#/tg-invoices/InvoicesController_getInvoice)
 | Параметр | Информация |
 |---------|-------------|
 | id* | ID счёта |
@@ -180,7 +220,8 @@ const invoice = await api.getInvoice({
 })
 ```
 
-### [deleteInvoice](https://pay.ton-rocket.com/api/#/tg-invoices/InvoicesController_deleteInvoice)
+### deleteInvoice
+[Документация](https://pay.ton-rocket.com/api/#/tg-invoices/InvoicesController_deleteInvoice)
 | Параметр | Информация |
 |---------|-------------|
 | id* | ID счёта |
@@ -192,7 +233,8 @@ const invoice = await api.deleteInvoice({
 })
 ```
 
-### [getCoins](https://pay.ton-rocket.com/api/#/coins/CoinsController_get)
+### getCoins
+[Документация](https://pay.ton-rocket.com/api/#/coins/CoinsController_get)
 | Параметр | Информация |
 |---------|-------------|
 | Не принимает параметров |
@@ -202,7 +244,8 @@ const invoice = await api.deleteInvoice({
 const coins = await api.getCoins()
 ```
 
-### [getCurrencies](https://pay.ton-rocket.com/api/#/currencies/CurrenciesController_getRates)
+### getCurrencies
+[Документация](https://pay.ton-rocket.com/api/#/currencies/CurrenciesController_getRates)
 | Параметр | Информация |
 |---------|-------------|
 | coinFrom* | ID токена |
@@ -211,7 +254,17 @@ const coins = await api.getCoins()
 Пример:
 ```javascript
 const currencies = await api.getCurrencies({
-  coinFrom: 1,
-  coinTo: 4
+  coinFrom: Assets.TON,
+  coinTo: Assets.SCALE
 })
 ```
+
+## 🌴 Константы
+### Assets
+| Константа | Значение |
+|---------|-------------|
+| Assets.TON | 1 |
+| Assets.SCALE | 4 |
+| Assets.BOLT | 5 |
+| Assets.TEGRO | 6 |
+| Assets.SCAM | 7 |

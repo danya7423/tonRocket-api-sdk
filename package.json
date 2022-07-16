@@ -1,15 +1,26 @@
 {
-  "name": "tonrocketapi",
-  "version": "1.0.0",
-  "description": "API для бота TON Rocket",
+  "name": "tonrocket-api-sdk",
+  "version": "1.1.1",
+  "description": "SDK для работы с API бота TON Rocket",
   "main": "index.js",
+  "dependencies": {
+    "node-fetch": "^2.3.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Daniil",
   "repository": {
     "type": "git",
-    "url": "https://github.com/danya7423/tonRocket-api-sdk"
+    "url": "git+https://github.com/danya7423/tonRocket-api-sdk.git"
   },
-  "license": "ISC"
+  "keywords": [
+    "TONRocket",
+    "TON"
+  ],
+  "author": "я",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danya7423/tonRocket-api-sdk/issues"
+  },
+  "homepage": "https://github.com/danya7423/tonRocket-api-sdk#readme"
 }

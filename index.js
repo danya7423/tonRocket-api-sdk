@@ -1,13 +1,22 @@
 const fetch = require('node-fetch')
 
+const Assets = {
+    "TON": 1,
+    "SCALE": 4,
+    "BOLT": 5,
+    "TEGRO": 6,
+    "SCAM": 7
+}
+
 class RocketApi {
-    constructor(access_token) {
+    constructor(access_token, options) {
         if (!access_token) {
-            throw new Error('')
+            throw new Error('access_token is required')
         }
 
+        this.options = options ? options : {}
         this.access_token = access_token
-        this.baseUrl = 'https://pay.ton-rocket.com'
+        this.baseUrl = this.options.testnet ? 'https://dev-pay.ton-rocket.com' : 'https://pay.ton-rocket.com'
         this.headers = {
             "Content-Type": "application/json",
             "Rocket-Pay-Key": this.access_token
@@ -163,4 +172,7 @@ class RocketApi {
     }
 }
 
-module.exports = RocketApi
+module.exports = {
+    RocketApi,
+    Assets
+}
