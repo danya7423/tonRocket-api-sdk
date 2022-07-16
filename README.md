@@ -24,7 +24,7 @@ const api = new RocketApi('токен', {
 ```
 ## ⬇️ Навигация
 
-#### 🚀 [Методы](#методы)
+#### 🚀 [Методы](#🚀-методы)
 ##### [- getAppInfo](#getappinfo)
 ##### [- transfer](#transfer)
 ##### [- withdrawal](#withdrawal)
@@ -43,7 +43,9 @@ const api = new RocketApi('токен', {
 ##### [- getCoins](#getcoins)
 ##### [- getCurrencies](#getcurrencies)
 
-#### 🌴 [Константы](#константы)
+#### 💬 [Вебхуки](#💬-вебхуки)
+
+#### 🌴 [Константы](#🌴-константы)
 ##### [- Assets](#assets)
 ## 🚀 Методы
 
@@ -256,6 +258,24 @@ const coins = await api.getCoins()
 const currencies = await api.getCurrencies({
   coinFrom: Assets.TON,
   coinTo: Assets.SCALE
+})
+```
+
+## 💬 Вебхуки
+С помощью нашей библиотеки вы можете установить вебхуки и получать уведомления о платежах.
+
+<b>ВНИМАНИЕ!!!</b> Установить URL вебхука вам необходимо самостоятельно, в боте TON Rocket
+
+Пример:
+```javascript
+const { RocketApi, Assets } = require('tonrocket-api-sdk')
+
+const api = new RocketApi('токен')
+
+api.onTransfer((data) => console.log(data))
+api.start({
+    port: 3000,
+    path: '/my-secret-path'
 })
 ```
 

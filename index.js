@@ -1,5 +1,11 @@
+const express = require("express")
+const bodyParser = require("body-parser")
+
 const fetch = require('node-fetch')
 
+const { Err, NotImplementedError } = require('./exceptions')
+
+const app = express()
 const Assets = {
     "TON": 1,
     "SCALE": 4,
@@ -8,14 +14,17 @@ const Assets = {
     "SCAM": 7
 }
 
+app.use(bodyParser.json())
+
 class RocketApi {
     constructor(access_token, options) {
         if (!access_token) {
-            throw new Error('access_token is required')
+            throw new NotImplementedError("Access token is not specified")
         }
 
         this.options = options ? options : {}
         this.access_token = access_token
+        this.onTransferCallback = null
         this.baseUrl = this.options.testnet ? 'https://dev-pay.ton-rocket.com' : 'https://pay.ton-rocket.com'
         this.headers = {
             "Content-Type": "application/json",
@@ -29,7 +38,16 @@ class RocketApi {
             headers: this.headers,
             body: method !== 'GET' && method !== 'DELETE' ? JSON.stringify(data) : undefined
         })
-        return await req.json()
+        let res = await req.json()
+        if (!res.success && res.message) {
+            if (res.errors) {
+                throw new Error(`${res.message}: ${JSON.stringify(res.errors)}`)
+            } else {
+                throw new Error(res.message)
+            }
+        }
+
+        return res
     }
 
     async getAppInfo() {
@@ -169,6 +187,33 @@ class RocketApi {
         coinTo
     }) {
         return await this.request('GET', 'currencies/rate?coinFrom=' + coinFrom + '&coinTo=' + coinTo)
+    }
+
+    async start(options) {
+        if (!options) {
+            throw new NotImplementedError("options is not specified")
+        }
+        if (!options.port) {
+            throw new NotImplementedError("port is not specified")
+        }
+        if (!options.path) {
+            throw new NotImplementedError("path is not specified")
+        }
+
+        app.post(options.path, (req, res) => {
+            if (typeof this.onTransferCallback == 'function') {
+                this.onTransferCallback(req.body)
+            }
+            res.send('ok')
+        })
+        app.listen(options.port)
+    }
+
+    async onTransfer(callback) {
+        if (typeof callback != 'function') {
+            throw new Err("callback is not a function")
+        }
+        this.onTransferCallback = callback
     }
 }
 
