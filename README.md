@@ -3,7 +3,7 @@
 ## ⚙️ Установка
 
 ```shell
-npm install tonrocketapi --save
+npm install tonrocket-api-sdk --save
 ```
 
 ## 🔐 Авторизация
@@ -11,7 +11,7 @@ npm install tonrocketapi --save
 Как получить токен написано [тут](https://pay.ton-rocket.com/api/).
 
 ```javascript
-const RocketApi = require('tonrocketapi')
+const RocketApi = require('tonrocket-api-sdk')
 
 const api = new RocketApi('токен')
 ```
